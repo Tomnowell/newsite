@@ -19,14 +19,20 @@
 # in the templates via {{ site.myvariable }}.
 
 title: tomnowell.com
-email: tom@otmnowell.com
+email: tom@tomnowell.com
 description: >- # this means to ignore newlines until "baseurl:"
     Thoughts and lessons learned in cyber security, software development, 
     cloud computing, parenthood and life in Japan and the U.K.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: / # the subpath of your site, e.g. /blog
 url: "https://tomnowell.com" # the base hostname & protocol for your site, e.g. http://example.com
 linkedin_username: tomnowell
 github_username: tomnowell
+
+header_pages:
+    - index.markdown
+    - blog.markdown
+    - projects.markdown
+    - about.markdown
 
 # Build settings
 theme: minima
@@ -51,3 +57,11 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Site settings
+permalink: /:title/
+markdown: kramdown
+paginate: 5
+paginate_path: "/:num/"
+date_format: "%b %-d, %Y"
+google_analytics: G-K20B1FX7KF;
