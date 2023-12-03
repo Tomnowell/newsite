@@ -4,16 +4,17 @@ title:  "TryHackMe: Intro To Logs Walkthrough"
 date:   2023-11-11 00:00:00 +0900
 categories: cybersec THM SOC2 Logs
 ---
+##### Learn the fundamentals of logging, data sources, collection methods and principles to step into the log analysis world
 
-#### Learn the fundamentals of logging, data sources, collection methods and principles to step into the log analysis world
+---
 
-#### TryHackMe SOC 2 Learning Pathway
+### Introduction
 
-##### Introduction
+This is a guide to [tryhackme: Intro To Logs](https://tryhackme.com/room/introtologs). The room starts with some nice graphics and a brief outline of learning outcomes. It looks like there is a lot to do, so let's get stuck in!  
 
-This is a guide to [tryhackme: Intro To Logs](https://tryhackme.com/room/introtologs). The room starts with some nice graphics and a brief outline of learning outcomes. It looks like there is a lot to do, so let's get stuck in!
+---
 
-##### Expanding Perspectives: Logs as Evidence of Historical Activity
+### Task 2 - Perspectives: Logs as Evidence of Historical Activity
 
 I'm not going to give the same information as the room does as I think the copyright rightly belongs to THM.
 
@@ -41,7 +42,7 @@ cat Desktop/note.txt (or open in the GUI)
 
 *Q2: What is  full path to the suggested log file for initial investigation?*
 
-> look in cat output of the note!
+- look in cat output of the note!
 
 <details>
 
@@ -53,13 +54,13 @@ cat Desktop/note.txt (or open in the GUI)
 
 ---
 
-#### Types, Formats, and Standards
+### Task 3 - Types, Formats, and Standards
 
 There's a lot of good information here about log types and how they are structured. It's not easy to memorize this stuff without some practical applications. But I try to consider why each data point is necessary within each log and the structure becomes more intuitive. I haven't memorized it, but I'm confident that when I come across these types of logs in the wild then I will have a good chance at understanding them.
 
 *Q1: Based on the list of log types in this task, what log type is used by the log file specified in the note from Task 2?*
 
-> Task 2 was discussing an Nginx server which is a web server...
+- Task 2 was discussing an Nginx server which is a web server...
 
 <details>
 
@@ -73,7 +74,7 @@ There's a lot of good information here about log types and how they are structur
 
 *Q2: Based on the list of log formats in this task, what log format is used by the log file specified in the note from Task 2?*
 
-> The materials clearly list what format the Nginx web server uses by default.
+- The materials clearly list what format the Nginx web server uses by default.
 
 <details>
 
@@ -85,7 +86,7 @@ There's a lot of good information here about log types and how they are structur
 
 ---
 
-#### Collection, Management, and Centralisation
+### Task 4 - Collection, Management, and Centralisation
 
 A lot of information here and an important note about time synchronisation to ensure the timeline of the logs. This is not possible on the room's VM because it doesn't have an internet connection (and you don't have root access either unless you've found a way in).
 
@@ -93,7 +94,7 @@ Go through the exercises and configure rsyslog.
 
 *Q1 After configuring rsyslog for sshd, what username repeatedly appears in the sshd logs at /var/log/websrv-02/rsyslog_sshd.log, indicating failed login attempts or brute forcing?*
 
-> after you have done the exercises you should be able to view the log file - so run: cat /var/log/websrv-02/rsyslog_sshd.log Disconnected from invalid user ...
+- after you have done the exercises you should be able to view the log file - so run: cat /var/log/websrv-02/rsyslog_sshd.log Disconnected from invalid user ...
 
 <details>
 
@@ -137,7 +138,7 @@ cat /var/log/websrv-02/rsyslog_cron.log | grep -E 'root|CMD'
 
 ---
 
-#### Storage, Retention and Deletion
+### Task 5 - Storage, Retention and Deletion
 
 Read the info - main points are to have a storage, retention deletion and backup policy in place and to stick to it for many reasons including regulatory and legal but also to allow automation and reduce human error.
 
@@ -148,7 +149,8 @@ Follow the practical activity to automate log rotation.
 ```bash
 cat /etc/logrotate.d/99-websrv-02_cron.conf
 ```
->if you followed the practical activity it should be pretty clear.
+
+- If you followed the practical activity it should be pretty clear.
 
 <details>
 
@@ -162,7 +164,7 @@ cat /etc/logrotate.d/99-websrv-02_cron.conf
 
 *Q2: Based on the logrotate configuration /etc/logrotate.d/99-websrv-02_cron.conf, what is the log rotation frequency?*
 
-> See the output for the last question.
+- See the output for the last question.
 
 <details>
 
@@ -174,7 +176,7 @@ cat /etc/logrotate.d/99-websrv-02_cron.conf
 
 ---
 
-#### Hands-on Exercise: Log analysis process, tools, and techniques
+### Task 6 - Hands-on Exercise: Log analysis process, tools, and techniques
 
 Time to get our hands dirty. There's still quite a bit of new information on data sources, parsing, normalising and sorting log data along with classification, enrichment, correlation, visualisation and finally reporting.
 
@@ -196,7 +198,7 @@ Again follow the url (not the link) in your browser (connected to the THM networ
 
 *Upon accessing the log viewer URL for unparsed raw log files, what error does "/var/log/websrv-02/rsyslog_cron.log" show when selecting the different filters?*
 
-> OK, this is the unparsed log file that we opened initially NOT the normalised and consolidated one. Hopefully you have it open. Follow the hint and click the dropdown next to the add filter.
+- OK, this is the unparsed log file that we opened initially NOT the normalised and consolidated one. Hopefully you have it open. Follow the hint and click the dropdown next to the add filter.
 
 <details>
 
@@ -210,7 +212,7 @@ Again follow the url (not the link) in your browser (connected to the THM networ
 
 *What is the process of standardising parsed data into a more easily readable and query-able format?*
 
-> This is what we did to the log file with all those awk sed and sort and uniq commands...
+- This is what we did to the log file with all those awk sed and sort and uniq commands...
 
 <details>
 
@@ -224,7 +226,7 @@ Again follow the url (not the link) in your browser (connected to the THM networ
 
 *What is the process of consolidating normalised logs to enhance the analysis of activities related to a specific IP address?*
 
-> This one isn't initially obvious unless you've really understood the reading at the start of this chapter. When we consolidate multiple logs we are really adding value to our log files. When we add extra context to a log in the form of say, an IP address we are performing xxxxxxxxxx on the log. Forgive my grammar the gerund form would be more natural here but the answer is the noun.
+- This one isn't initially obvious unless you've really understood the reading at the start of this chapter. When we consolidate multiple logs we are really adding value to our log files. When we add extra context to a log in the form of say, an IP address we are performing xxxxxxxxxx on the log. Forgive my grammar the gerund form would be more natural here but the answer is the noun.
 
 <details>
 
@@ -236,8 +238,6 @@ Again follow the url (not the link) in your browser (connected to the THM networ
 
 ---
 
-#### Conclusion
+### Conclusion
 
 I learned *a lot* from this room. And it has already started me off exploring the powerful awk and sed programs.
-
-
