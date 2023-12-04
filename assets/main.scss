@@ -6,7 +6,7 @@
 /**
  * Headings
  */
- h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: $base-font-weight;
 }
@@ -27,8 +27,6 @@
     }
   }
 
-
-
   /**
   * Links
   **/
@@ -44,9 +42,6 @@
     line-height: 32px;
   }
 
-  ul {
-    margin-bottom: 20px;
-  }
 
   hr {
     margin-top: 25px;
@@ -72,9 +67,5 @@
     padding-left: 3px;
   }
 
-  blockquote p:first-letter {
-    color: rgb(0, 153, 43);
-    float: left;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-  }
+
 

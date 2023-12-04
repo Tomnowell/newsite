@@ -9,7 +9,9 @@ categories: cybersec THM SOC2 Logging Analysis 'Blue team' 'Purple team'
 
 ---
 
-![Cartoon office](/images/logs3.jpeg)
+<div> <img src="/images/logs3.jpeg" alt="Computer tech cartoon" /> </div>
+
+---
 
 ### Introduction
 
@@ -17,7 +19,7 @@ This room, [Intro to Log Analysis](https://tryhackme.com/room/introtologanalysis
 
 While there is no room VM there are three tasks with file downloads and I recommend downloading these to an environment where you are comfortable manipulating from the command line. For me that's a bash or similar shell along with built in Linux programs such as cat, sort, grep. I'm sure this is equally do-able from a windows Command prompt or from Powershell. In fact diving deeper into powershell is on my to do list, but for now, I'm going to be doing this in my Ubuntu installation in WSL.
 
-As in my other write-up or walkthroughs I am not going to just repeat the information in the room.
+As in my other write-up and walkthroughs I am not going to just repeat the information in the room.
 
 ---
 
@@ -57,9 +59,11 @@ When confronted with anomalous data external research and threat intelligence al
 
 </details>
 
-*Q2: Which threat intelligence indicator would 5b31f93c09ad1d065c0491b764d04933 and 763f8bdbc98d105a8e82f36157e98bbe be classified as?*
+---
 
-> They certainly look like some kind of hash.
+**Q2: Which threat intelligence indicator would 5b31f93c09ad1d065c0491b764d04933 and 763f8bdbc98d105a8e82f36157e98bbe be classified as?**
+
+*They certainly look like some kind of hash.*
 
 <details>
 
@@ -79,9 +83,9 @@ First we learn where some common logs are stored. Logs for web servers, database
 
 We then look at some common patterns including user behaviour and attack signatures including SQL injection, XSS and path traversal.
 
-*What is the default file path to view logs regarding HTTP requests on an Nginx server?*
+**Q1: What is the default file path to view logs regarding HTTP requests on an Nginx server?**
 
-> This is stated earlier in the Task...
+*This is stated earlier in the Task...*
 
 <details>
 
@@ -91,10 +95,11 @@ We then look at some common patterns including user behaviour and attack signatu
 
 </details>
 
+---
 
-*A log entry containing %2E%2E%2F%2E%2E%2Fproc%2Fself%2Fenviron was identified. What kind of attack might this infer?*
+**Q2: A log entry containing %2E%2E%2F%2E%2E%2Fproc%2Fself%2Fenviron was identified. What kind of attack might this infer?**
 
-> All those %2E look like URL encoded periods and a few %2F which represent forward slashes. It looks like someone is navigating through a file system.
+*All those %2E look like URL encoded periods and a few %2F which represent forward slashes. It looks like someone is navigating through a file system.*
 
 <details>
 
@@ -112,9 +117,9 @@ Here we learn about some tools that automate log analysis. Many of the modern to
 
 The advantages and disadvantages of automated and manual analysis are considered. Basically automated is quick but expensive and highly dependent on the effectiveness of the detection model or AI, manual analysis is 'cheap' in terms of tooling and contributes to the organisational understanding of the employee conducting the analysis however it is time consuming (and therefore also expensive) and prone to human error.
 
-*Q1: A log file is processed by a tool which returns an output. What form of analysis is this?*
+**Q1: A log file is processed by a tool which returns an output. What form of analysis is this?**
 
-> If a tool does the analysis for you it is...
+*If a tool does the analysis for you it is...*
 
 <details>
 
@@ -124,9 +129,11 @@ The advantages and disadvantages of automated and manual analysis are considered
 
 </details>
 
-*Q2: An analyst opens a log file and searches for events. What form of analysis is this?*
+---
 
-> Um...the opposite
+**Q2: An analyst opens a log file and searches for events. What form of analysis is this?**
+
+*Um...the opposite*
 
 <details>
 
@@ -144,9 +151,10 @@ Yay some task files to download! The examples are all done in bash on Linux so I
 
 I definitely recommend trying these exercises before looking at my hints or answers. If you're not used to using these tools on the command line (like me) it may seem daunting at first. I panicked! But, it's easier than it looks!
 
-*Q1: Use a combination of the above commands on the apache.log file to return only the URLs. What is the flag that is returned in one of the unique entries?*
+**Q1: Use a combination of the above commands on the apache.log file to return only the URLs. What is the flag that is returned in one of the unique entries?**
 
-> This probably isn't the cleanest way to do this - but if you cut the 7th column you get just the path and the flag is pretty obvious sitting there near the bottom of the list.
+*This probably isn't the cleanest way to do this - but if you cut the 7th column you get just the path and the flag is pretty obvious sitting there near the bottom of the list.*
+
 ```bash 
 cut -d ' ' -f 7 apache.log
 ```
@@ -159,9 +167,12 @@ cut -d ' ' -f 7 apache.log
 
 </details>
 
-*Q2: In the apache.log file, how many total HTTP 200 responses were logged?*
+---
 
-> use awk to select all 200 response codes and pipe it to wc - the first value is our count  
+**Q2: In the apache.log file, how many total HTTP 200 responses were logged?**
+
+*use awk to select all 200 response codes and pipe it to wc - the first value is our count.*
+
 ```bash
 awk '$9 == 200' apache.log | wc
 ```
@@ -174,9 +185,11 @@ awk '$9 == 200' apache.log | wc
 
 </details>
 
-*Q3: In the apache.log file, which IP address generated the most traffic?*
+---
 
-> this should isolate the ip addresses, sort them and count the occurrences
+**Q3: In the apache.log file, which IP address generated the most traffic?**
+
+*this should isolate the ip addresses, sort them and count the occurrences*
 
 ```bash
 cut -d ' ' -f 1 apache.log | sort -n -r | uniq -c
@@ -190,9 +203,11 @@ cut -d ' ' -f 1 apache.log | sort -n -r | uniq -c
 
 </details>
 
-*Q4: What is the complete timestamp of the entry where 110.122.65.76 accessed /login.php?*
+---
 
-> This command returns just one log entry - the timestamp is the answer!
+**Q4: What is the complete timestamp of the entry where 110.122.65.76 accessed /login.php?**
+
+*This command returns just one log entry - the timestamp is the answer!*
 
 ```bash
 grep "/login.php" apache.log | grep "110.122.65.76"
@@ -216,9 +231,9 @@ There is a linked room to learn and practice [regular expressions](https://tryha
 
 Download the file if you want to practice on it, but the questions actually don't really require it. I'd like a bit of practice though.
 
-*How would you modify the original grep pattern above to match blog posts with an ID between 22-26?*
+**Q1: How would you modify the original grep pattern above to match blog posts with an ID between 22-26?**
 
-> We will take just the regex part of the command in the inverted commas and change it so that instead of finding values between 10 and 19 it will select values between 22 and 26. The original command is: 
+*We will take just the regex part of the command in the inverted commas and change it so that instead of finding values between 10 and 19 it will select values between 22 and 26. The original command is:*
 
 ```bash
 grep -E 'post=1[0-9]' apache-ex2 log
@@ -232,9 +247,11 @@ grep -E 'post=1[0-9]' apache-ex2 log
 
 </details>
 
-*What is the name of the filter plugin used in Logstash to parse unstructured log data?*
+---
 
-> This name was actually in the tech news cycle recently - unfortunately because of a certain E. Musk. And not related to this plugin.
+**Q2: What is the name of the filter plugin used in Logstash to parse unstructured log data?**
+
+*This name was actually in the tech news cycle recently - unfortunately because of a certain E. Musk. And not related to this plugin.*
 
 <details>
 
@@ -252,14 +269,13 @@ Wow, I did *not* know that Cyberchef was created by GCHQ - Nice one GB secret se
 
 It makes sense to keep track of what people are trying to decode, though. So, I'm sure they're doing a *lot* of data collection through the site. If you are decoding sensitive stuff perhaps don't use Cyberchef to do it. Otherwise it's a very handy tool.
 
-*Locate the "loganalysis.zip" file under /root/Rooms/introloganalysis/task8 and extract the contents.*
+**Q1: Locate the "loganalysis.zip" file under /root/Rooms/introloganalysis/task8 and extract the contents.**
 
-> I'm not exactly sure what they mean with this question - perhaps they've changed the room without changing all the questions - luckily this one doesn't actually require an answer
-
+*I'm not exactly sure what they mean with this question - perhaps they've changed the room without changing all the questions - luckily this one doesn't actually require an answer.*
  
-*Upload the log file named "access.log" to CyberChef. Use regex to list all of the IP addresses. What is the full IP address beginning in 212?*
+**Q2: Upload the log file named "access.log" to CyberChef. Use regex to list all of the IP addresses. What is the full IP address beginning in 212?**
 
-> We're presented with the following regex to find ip addresses in the information for the task, so this is pretty straightforward. Just add a regex module to the recipe and change the output format to list matches only then search for the given octet '212'. I used the provided regular expression: 
+*We're presented with the following regex to find ip addresses in the information for the task, so this is pretty straightforward. Just add a regex module to the recipe and change the output format to list matches only then search for the given octet '212'. I used the provided regular expression:*
 
 ```regex
 \b([0-9]{1,3}\.){3}[0-9]{1,3}\b 
@@ -273,23 +289,27 @@ It makes sense to keep track of what people are trying to decode, though. So, I'
 
 </details>
 
-*Using the same log file from Question #2, a request was made that is encoded in base64. What is the decoded value?*
+---
 
-> Well, I couldn't get this to work properly in CyberChef - I found a string that certainly looks like base64 in a GET request: 'VEhNe0NZQkVSQ0hFRl9XSVpBUkR9== ' I used the bash command:
+**Q3: Using the same log file from Question #2, a request was made that is encoded in base64. What is the decoded value?**
+
+*Well, I couldn't get this to work properly in CyberChef - I found a string that certainly looks like base64 in a GET request: 'VEhNe0NZQkVSQ0hFRl9XSVpBUkR9== ' I used the bash command:*
+
 ```bash
  echo 'VEhNe0NZQkVSQ0hFRl9XSVpBUkR9== ' | base64 -d
  ```
-> to decode it and that did actually come out with the answer but it also stated that it was an invalid input. 
-> I then reversed the direction and encoded the answer with:
+
+*to decode it and that did actually come out with the answer but it also stated that it was an invalid input. I then reversed the direction and encoded the answer with:*
 
 ```bash
  echo 'THM{THIS_THIS_IS_NOT_THE_ACTUAL_FLAG}' | base64
 ```
 
-> which resulted in the encoded string:  
-> VEhNe0NZQkVSQ0hFRl9XSVpBUkR9Cg==  
-> Perhaps there is some different character encoding...
-> I then tried it again in Cyberchef and it worked with either encoded string, so perhaps Cyberchef just froze in my browser.
+*which resulted in the encoded string:*
+
+```VEhNe0NZQkVSQ0hFRl9XSVpBUkR9Cg==```
+
+*Perhaps there is some different character encoding...I then tried it again in Cyberchef and it worked with either encoded string, so perhaps Cyberchef just froze in my browser.*
 
 <details>
 
@@ -299,9 +319,11 @@ It makes sense to keep track of what people are trying to decode, though. So, I'
 
 </details>
 
-*Using CyberChef, decode the file named "encodedflag.txt" and use regex to extract by MAC address. What is the extracted value?*
+---
 
-> Again Cyberchef makes this too easy! First we need to decode 'from base64'. I then tried making a regex for mac addresses until I found that Cyberchef has an 'extract MAC address' function. Apply it, and we're left with the answer.
+**Q4: Using CyberChef, decode the file named "encodedflag.txt" and use regex to extract by MAC address. What is the extracted value?**
+
+*Again Cyberchef makes this too easy! First we need to decode 'from base64'. I then tried making a regex for mac addresses until I found that Cyberchef has an 'extract MAC address' function. Apply it, and we're left with the answer.*
 
 <details>
 
@@ -311,13 +333,17 @@ It makes sense to keep track of what people are trying to decode, though. So, I'
 
 </details>
 
+---
+
 ### Task 9 - Log Analysis Tools: Yara and Sigma
 
 In this task, we are introduced to the tool, Sigma. It uses Yara rules to find information in log files using pattern matching. We came across [Yara](https://tryhackme.com/room/yara) in the SOC 1 learning path.
 
-*What languages does Sigma use?*
+---
 
-> Well Sigma uses the Yara rule structure which in turn uses the .... language.
+**Q1: What languages does Sigma use?**
+
+*Well Sigma uses the Yara rule structure which in turn uses the .... language.*
 
 <details>
 
@@ -327,9 +353,11 @@ In this task, we are introduced to the tool, Sigma. It uses Yara rules to find i
 
 </details>
 
-*What keyword is used to denote the "title" of a Sigma rule?*
+---
 
-> The answer is literally in the question.
+**Q2: What keyword is used to denote the "title" of a Sigma rule?**
+
+*The answer is literally in the question.*
 
 <details>
 
@@ -339,9 +367,11 @@ In this task, we are introduced to the tool, Sigma. It uses Yara rules to find i
 
 </details>
 
-*What keyword is used to denote the "name" of a rule in YARA?*
+---
 
-> Have a look at an example, the word that preceeds the title is...
+**Q3 :What keyword is used to denote the "name" of a rule in YARA?**
+
+*Have a look at an example, the word that preceeds the title is...*
 
 <details>
 

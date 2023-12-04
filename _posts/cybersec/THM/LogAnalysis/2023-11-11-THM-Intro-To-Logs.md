@@ -4,10 +4,15 @@ title:  "TryHackMe: Intro To Logs"
 date:   2023-11-11 00:00:00 +0900
 categories: cybersec THM SOC2 Logging 'Blue team' 'Purple team'
 ---
+
 ##### Learn the fundamentals of logging, data sources, collection methods and principles to step into the log analysis world
 
 ---
-![Cartoon tech](/images/logs.jpeg)
+
+<div> <img src="/images/logs.jpeg" alt="Computer tech cartoon" /> </div>
+
+---
+
 ### Introduction
 
 This is a guide to [tryhackme: Intro To Logs](https://tryhackme.com/room/introtologs). The room starts with some nice graphics and a brief outline of learning outcomes. It looks like there is a lot to do, so let's get stuck in!  

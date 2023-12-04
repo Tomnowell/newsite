@@ -9,7 +9,9 @@ categories: cybersec THM SOC2 Logging operations 'Blue team' 'Purple team'
 
 ---
 
-![Cartoon office](/images/logs2.jpeg)
+<div> <img src="/images/logs2.jpeg" alt="Computer tech cartoon" /> </div>
+
+---
 
 ### Introduction
 
