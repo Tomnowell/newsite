@@ -1,14 +1,19 @@
-# Log Operations
+---
+layout: post
+title:  "TryHackMe: Log Operations"
+date:   2023-11-18 00:00:00 +0900
+categories: cybersec THM SOC2 Logging operations 'Blue team' 'Purple team'
+---
 
-## Learn the operation process details
+##### Learn the operation process details
 
-## SOC Level 2 Learning Pathway
+---
+
+![Cartoon office](/images/logs2.jpeg)
 
 ### Introduction
 
-Here we'll take a look at the Tryhackme room [Log Operations](https://tryhackme.com/room/logoperations).
-
-I thought this room would be a breeze. There are no deployable VMs and no files to download. However, this room is pretty information dense and it's too easy to skip over bits without letting them sink in properly. So I will do my best to actually comment on the room and thus, hopefully, consolidate my understanding and hopefully give some added value to anyone reading this.
+Here we'll take a look at the Tryhackme room [Log Operations](https://tryhackme.com/room/logoperations). I thought this room would be a breeze. There are no deployable VMs and no files to download. However, this room is pretty information dense and it's too easy to skip over bits without letting them sink in properly. So I will do my best to actually comment on the room and thus, hopefully, consolidate my understanding and hopefully give some added value to anyone reading this.
 
 ---
 
@@ -20,9 +25,9 @@ A real world implementation would likely be a balance of these but it separates 
 
 It is likely that no purpose is outright ignored. Another example, a company focussed on achieving PCI DSS compliance to process credit card information will likely also have to focus on the *'security'* purpose and will want to ensure any system's reliability thus implementing the *'debug'* purpose.  
 
-*Q1: Which of the given log purposes would be suitable to measure the cost of using a service?*
+**Q1: Which of the given log purposes would be suitable to measure the cost of using a service?**
 
-> Cost of services is usually this concern.
+*Cost of services is usually this concern.*
 
 <details>
 
@@ -34,9 +39,9 @@ It is likely that no purpose is outright ignored. Another example, a company foc
 
 ---
 
-*Q2: Which of the given log purposes would be suitable for investigating application logs for enhancement and stability?*
+**Q2: Which of the given log purposes would be suitable for investigating application logs for enhancement and stability?**
 
-> The key term here is stability - enhancement could also fall under the answer for Q1 but here we want to remove problems.
+*The key term here is stability - enhancement could also fall under the answer for Q1 but here we want to remove problems.*
 
 <details>
 
@@ -54,9 +59,9 @@ Here we are presented with some guiding questions that we might use in a meeting
 
 Most questions relate to the *how*. How much will (needs to be) logged? - This likely depends on the purpose also. There may be regulatory stipulations for example if credit card details or personal information are involved. How will logs be created and stored? - This might also be regulated depending on the geographic area of collection (eg. GDPR in Europe). How are logs protected and analysed? Again there may be regulation or answers may be influenced by company information security policy. Finally we consider resources both financial and workforce related. Log maintenance and continuous usage should be considered here.
 
-*Which question's answer can be "as much as mentioned in the PCI DSS requirements"?*
+**Which question's answer can be "as much as mentioned in the PCI DSS requirements"?**
 
-> PCI DSS relates to companies who process credit card information and is quite strict on how much data (and of course what data) is logged.
+*PCI DSS relates to companies who process credit card information and is quite strict on how much data (and of course what data) is logged.*
 
 <details>
 
@@ -74,9 +79,9 @@ Of course the dilemma is always about resources. Essentially, everything comes d
 
 Base requirements lay out the data that must be logged to meet operational, security and legal obligations. Aspirations may include logging data to achieve better business or operational insights thus improving processes yet are not absolutely required to meet security and operational goals.
 
-* Q1: Which requirements are non-negotiable?*
+**Q1: Which requirements are non-negotiable?**
 
-> We've said it in so many ways but we have to get the wording right for the answer to be accepted.
+*We've said it in so many ways but we have to get the wording right for the answer to be accepted.*
 
 <details>
 
@@ -98,9 +103,9 @@ Notice, archive and security appear both in principles and challenges. In fact t
 
 The final point made seems relevant to all aspects of security not just logging so, it's worth emphasising: *Adhere to principles and address challenges proactively.*
 
-*Q1: Your team is working on policies to decide which logs will be stored and which portion will be available for analysis. Which of the given logging principles would be implemented and improved?*
+**Q1: Your team is working on policies to decide which logs will be stored and which portion will be available for analysis. Which of the given logging principles would be implemented and improved?**
 
-> The key words here are stored and available. We're looking at principles. So what's another word for store (especially for a long time)  
+*The key words here are stored and available. We're looking at principles. So what's another word for store (especially for a long time)*
 
 <details>
 
@@ -112,9 +117,9 @@ The final point made seems relevant to all aspects of security not just logging 
 
 ---
 
-*Q2: Your team implemented a brand new API logging product. One of the team members has been tasked with collecting the logs generated by that new product. The team member reported continuous errors when transferring the logs to the review platform. In this case, which of the given difficulties occurs?*
+**Q2: Your team implemented a brand new API logging product. One of the team members has been tasked with collecting the logs generated by that new product. The team member reported continuous errors when transferring the logs to the review platform. In this case, which of the given difficulties occurs?**
 
-> Here we assume the team member is technically proficient and is following procedure. There's a hint in the word error. Which challenge covers things that might be error-prone?
+*Here we assume the team member is technically proficient and is following procedure. There's a hint in the word error. Which challenge covers things that might be error-prone?*
 
 <details>
 
@@ -130,9 +135,9 @@ The final point made seems relevant to all aspects of security not just logging 
 
 In almost all situations within a professional environment it is good to be aware of, and knowledgeable about, best practice. While it is important to learn from one's own mistakes - a true master learns from the mistakes of others.
 
-*Q1: As a consultant, you are doing a comprehensive risk assessment and noticed that one of the development teams implemented a custom script to generate logs for an old system which omits loggings at some phases. What would you call this? (Mistake or Practice?)*
+**Q1: As a consultant, you are doing a comprehensive risk assessment and noticed that one of the development teams implemented a custom script to generate logs for an old system which omits loggings at some phases. What would you call this? (Mistake or Practice?)**
 
-> It's not directly obvious which this is. If the omissions were planned then it may not be a problem to omit some phases from the logs. However the use of the word 'omit' rather than 'exclude' makes it sound like this is not the intended outcome. Also, you could just count the number of letters the answer requires.
+*It's not directly obvious which this is. If the omissions were planned then it may not be a problem to omit some phases from the logs. However the use of the word 'omit' rather than 'exclude' makes it sound like this is not the intended outcome. Also, you could just count the number of letters the answer requires.*
 
 <details>
 

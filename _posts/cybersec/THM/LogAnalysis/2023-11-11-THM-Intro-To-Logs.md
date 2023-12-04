@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "TryHackMe: Intro To Logs Walkthrough"
+title:  "TryHackMe: Intro To Logs"
 date:   2023-11-11 00:00:00 +0900
-categories: cybersec THM SOC2 Logs
+categories: cybersec THM SOC2 Logging 'Blue team' 'Purple team'
 ---
 ##### Learn the fundamentals of logging, data sources, collection methods and principles to step into the log analysis world
 
 ---
-
+![Cartoon tech](/images/logs.jpeg)
 ### Introduction
 
 This is a guide to [tryhackme: Intro To Logs](https://tryhackme.com/room/introtologs). The room starts with some nice graphics and a brief outline of learning outcomes. It looks like there is a lot to do, so let's get stuck in!  
@@ -24,10 +24,12 @@ For this machine you actually don't really need a desktop so I just ssh in from 
 
 However you choose to connect the login credentials for damianhall are on this page.
 
-*Q1:  What is the name of your colleague who left a note on the Desktop?*
+**Q1:  What is the name of your colleague who left a note on the Desktop?**
+
+*Check the note.*
 
 ```bash
-cat Desktop/note.txt (or open in the GUI) 
+cat Desktop/note.txt # (or open in the GUI) 
 ```
 
 <details>
@@ -40,9 +42,9 @@ cat Desktop/note.txt (or open in the GUI)
 
 ---
 
-*Q2: What is  full path to the suggested log file for initial investigation?*
+**Q2: What is  full path to the suggested log file for initial investigation?**
 
-- look in cat output of the note!
+*Check the note!*
 
 <details>
 
@@ -58,9 +60,9 @@ cat Desktop/note.txt (or open in the GUI)
 
 There's a lot of good information here about log types and how they are structured. It's not easy to memorize this stuff without some practical applications. But I try to consider why each data point is necessary within each log and the structure becomes more intuitive. I haven't memorized it, but I'm confident that when I come across these types of logs in the wild then I will have a good chance at understanding them.
 
-*Q1: Based on the list of log types in this task, what log type is used by the log file specified in the note from Task 2?*
+**Q1: Based on the list of log types in this task, what log type is used by the log file specified in the note from Task 2?**
 
-- Task 2 was discussing an Nginx server which is a web server...
+*Task 2 was discussing an Nginx server which is a web server...*
 
 <details>
 
@@ -72,9 +74,9 @@ There's a lot of good information here about log types and how they are structur
 
 ---
 
-*Q2: Based on the list of log formats in this task, what log format is used by the log file specified in the note from Task 2?*
+**Q2: Based on the list of log formats in this task, what log format is used by the log file specified in the note from Task 2?**
 
-- The materials clearly list what format the Nginx web server uses by default.
+*The materials clearly list what format the Nginx web server uses by default.*
 
 <details>
 
@@ -92,9 +94,15 @@ A lot of information here and an important note about time synchronisation to en
 
 Go through the exercises and configure rsyslog.
 
-*Q1 After configuring rsyslog for sshd, what username repeatedly appears in the sshd logs at /var/log/websrv-02/rsyslog_sshd.log, indicating failed login attempts or brute forcing?*
+**Q1 After configuring rsyslog for sshd, what username repeatedly appears in the sshd logs at /var/log/websrv-02/rsyslog_sshd.log, indicating failed login attempts or brute forcing?**
 
-- after you have done the exercises you should be able to view the log file - so run: cat /var/log/websrv-02/rsyslog_sshd.log Disconnected from invalid user ...
+*after you have done the exercises you should be able to view the log file - so run:*
+
+```bash
+cat /var/log/websrv-02/rsyslog_sshd.log 
+```
+
+*Look for the 'Disconnected from invalid user...'*
 
 <details>
 
@@ -106,7 +114,9 @@ Go through the exercises and configure rsyslog.
 
 ---
 
-*Q2 What is the IP address of SIEM-02 based on the rsyslog configuration file /etc/rsyslog.d/99-websrv-02-cron.conf, which is used to monitor cron messages?*
+**Q2 What is the IP address of SIEM-02 based on the rsyslog configuration file /etc/rsyslog.d/99-websrv-02-cron.conf, which is used to monitor cron messages?**
+
+*Check the cron configuration*
 
 ```bash
  cat /etc/rsyslog.d/99-websrv-02-cron.conf
@@ -122,7 +132,9 @@ Go through the exercises and configure rsyslog.
 
 ---
 
-*Based on the generated logs in /var/log/websrv-02/rsyslog_cron.log, what command is being executed by the root user?*
+**Based on the generated logs in /var/log/websrv-02/rsyslog_cron.log, what command is being executed by the root user?**
+
+*Look in the cron log grep for root and CMD*
 
 ```bash
 cat /var/log/websrv-02/rsyslog_cron.log | grep -E 'root|CMD'
@@ -144,13 +156,13 @@ Read the info - main points are to have a storage, retention deletion and backup
 
 Follow the practical activity to automate log rotation.
 
-*Q1: Based on the logrotate configuration /etc/logrotate.d/99-websrv-02_cron.conf, how many versions of old compressed log file copies will be kept?*
+**Q1: Based on the logrotate configuration /etc/logrotate.d/99-websrv-02_cron.conf, how many versions of old compressed log file copies will be kept?**
+
+*Look in the cron configuration.*
 
 ```bash
 cat /etc/logrotate.d/99-websrv-02_cron.conf
 ```
-
-- If you followed the practical activity it should be pretty clear.
 
 <details>
 
@@ -162,9 +174,9 @@ cat /etc/logrotate.d/99-websrv-02_cron.conf
 
 ---
 
-*Q2: Based on the logrotate configuration /etc/logrotate.d/99-websrv-02_cron.conf, what is the log rotation frequency?*
+**Q2: Based on the logrotate configuration /etc/logrotate.d/99-websrv-02_cron.conf, what is the log rotation frequency?**
 
-- See the output for the last question.
+*See the output for the last question.*
 
 <details>
 
@@ -196,9 +208,9 @@ Then sort and uniq are used to, well...sort and remove duplicates from the log e
 
 Again follow the url (not the link) in your browser (connected to the THM network) to view the consolidated log files. Open in a new tab because you'll want to access the unparsed data too.
 
-*Upon accessing the log viewer URL for unparsed raw log files, what error does "/var/log/websrv-02/rsyslog_cron.log" show when selecting the different filters?*
+**Upon accessing the log viewer URL for unparsed raw log files, what error does "/var/log/websrv-02/rsyslog_cron.log" show when selecting the different filters?**
 
-- OK, this is the unparsed log file that we opened initially NOT the normalised and consolidated one. Hopefully you have it open. Follow the hint and click the dropdown next to the add filter.
+*OK, this is the unparsed log file that we opened initially NOT the normalised and consolidated one. Hopefully you have it open. Follow the hint and click the dropdown next to the add filter.*
 
 <details>
 
@@ -210,9 +222,9 @@ Again follow the url (not the link) in your browser (connected to the THM networ
 
 ---
 
-*What is the process of standardising parsed data into a more easily readable and query-able format?*
+**What is the process of standardising parsed data into a more easily readable and query-able format?**
 
-- This is what we did to the log file with all those awk sed and sort and uniq commands...
+*This is what we did to the log file with all those awk sed and sort and uniq commands...*
 
 <details>
 
@@ -224,9 +236,9 @@ Again follow the url (not the link) in your browser (connected to the THM networ
 
 ---
 
-*What is the process of consolidating normalised logs to enhance the analysis of activities related to a specific IP address?*
+**What is the process of consolidating normalised logs to enhance the analysis of activities related to a specific IP address?**
 
-- This one isn't initially obvious unless you've really understood the reading at the start of this chapter. When we consolidate multiple logs we are really adding value to our log files. When we add extra context to a log in the form of say, an IP address we are performing xxxxxxxxxx on the log. Forgive my grammar the gerund form would be more natural here but the answer is the noun.
+*This one isn't initially obvious unless you've really understood the reading at the start of this chapter. When we consolidate multiple logs we are really adding value to our log files. When we add extra context to a log in the form of say, an IP address we are performing xxxxxxxxxx on the log.*
 
 <details>
 

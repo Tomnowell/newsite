@@ -1,12 +1,19 @@
-# Intro to Log Analysis
+---
+layout: post
+title:  "TryHackMe: Intro to Log Analysis"
+date:   2023-12-02 00:00:00 +0900
+categories: cybersec THM SOC2 Logging Analysis 'Blue team' 'Purple team'
+---
 
-## An intro to log analysis, best practices, and essential tools for effective detection and response.
+##### An intro to log analysis, best practices, and essential tools for effective detection and response
 
-## SOC Level 2 Learning Pathway
+---
+
+![Cartoon office](/images/logs3.jpeg)
 
 ### Introduction
 
-This room, [Intro to Log Analysis](https://tryhackme.com/room/introtologanalysis) concludes the Log Analysis module of the SOC Level 2 learning pathway.
+This room, [Intro to Log Analysis](https://tryhackme.com/room/introtologanalysis) concludes the Log Analysis module of the SOC Level 2 learning pathway. It's a subscriber only room, so you will need to be subscribed to do it. It's also quite a recently added room.
 
 While there is no room VM there are three tasks with file downloads and I recommend downloading these to an environment where you are comfortable manipulating from the command line. For me that's a bash or similar shell along with built in Linux programs such as cat, sort, grep. I'm sure this is equally do-able from a windows Command prompt or from Powershell. In fact diving deeper into powershell is on my to do list, but for now, I'm going to be doing this in my Ubuntu installation in WSL.
 
@@ -38,9 +45,9 @@ Log monitoring and alerts are very important and proper implementation can allow
 
 When confronted with anomalous data external research and threat intelligence allow us to understand what we are seeing and proactively take steps to remediate the situation.
 
-*Q1: What's the term for a consolidated chronological view of logged events from diverse sources, often used in log analysis and digital forensics?*
+**Q1: What's the term for a consolidated chronological view of logged events from diverse sources, often used in log analysis and digital forensics?**
 
-> Well, I thought it was a cool name :)
+*Well, I thought it was a cool name :)*
 
 <details>
 
